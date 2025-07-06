@@ -6,11 +6,10 @@ export const listarEventos = async (req, res) => {
 
   if (req.user.tipo_usuario === 'MODERADOR') {
     where.resposta_da_moderacao = 'pendente'
-  } else {
-
+  } 
+  else {
     where.resposta_da_moderacao = 'aprovado'
     where.aprovado_pela_modereacao = true
-
   }
 
   const eventos = await prisma.evento.findMany({
