@@ -18,7 +18,7 @@ const usuarioSchema = z.object({
     .string({ invalid_type_error: "Insira um email válido!" })
     .email(),
 
-  senha_hash: z
+  senha_hash: z 
     .string({ invalid_type_error: "A senha deve atender os requisitos!" })
     .min(6, "Senha deve ter no mínimo 6 caracteres")
     .max(500, "Senha deve ter no máximo 500 caracteres"),
