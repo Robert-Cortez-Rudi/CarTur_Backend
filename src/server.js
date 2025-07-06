@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import usuarioRouter from "./Routers/usuarioRouter.js"
+import eventoRouter from "./Routers/eventoRouter.js"
 import { homepage } from "./Controllers/homepage.js"
 import { logger } from "./Middlewares/logger.js"
 
@@ -14,6 +15,7 @@ app.use(express.json())
 
 app.get("/", homepage)
 app.use("/usuario", usuarioRouter)
+app.use("/eventos", eventoRouter)
 
 
 app.listen(port, () => {
