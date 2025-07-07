@@ -47,13 +47,13 @@ export const usuarioValidator = (usuario, partial = null) => {
 }
 
 export async function create(user) {
-  console.log("Data recebida:", user.data_nascimento, typeof user.data_nascimento);
+  console.log("Data recebida:", user.data_nascimento, typeof user.data_nascimento)
 
-  const hashedPassword = await bcrypt.hash(user.senha_hash, 10);
+  const hashedPassword = await bcrypt.hash(user.senha_hash, 10)
 
-  const dataNascimentoDate = new Date(user.data_nascimento);
+  const dataNascimentoDate = new Date(user.data_nascimento)
   if (isNaN(dataNascimentoDate)) {
-    throw new Error("Data de nascimento inválida ou formato incorreto.");
+    throw new Error("Data de nascimento inválida ou formato incorreto.")
   }
 
   return await prisma.usuario.create({
@@ -78,7 +78,7 @@ export async function create(user) {
       uf: true,
       tipo_usuario: true
     }
-  });
+  })
 }
 
 
@@ -89,7 +89,8 @@ export async function findByEmail(email) {
       id: true,
       nome: true,
       email: true,
-      senha_hash: true
+      senha_hash: true,
+      tipo_usuario: true
     }
-  });
+  })
 }

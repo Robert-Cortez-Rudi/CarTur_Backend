@@ -5,13 +5,13 @@ const prisma = new PrismaClient()
 
 export function checkUserRole(...allowedTypes) {
   return async (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.authorization
 
     if (!authHeader?.startsWith('Bearer ')) {
-      return res.status(401).json({ message: 'O token não foi fornecido' });
+      return res.status(401).json({ message: 'O token não foi fornecido' })
     }
 
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1]
 
     try {
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
@@ -21,18 +21,17 @@ export function checkUserRole(...allowedTypes) {
       });
 
       if (!user) {
-        return res.status(401).json({ message: 'Usuário não encontrado' });
+        return res.status(401).json({ message: 'Usuário não encontrado' })
       }
 
-      // Aqui allowedTypes devem ser os nomes dos enums: "GERAL", "PREMIUM", etc
       if (!allowedTypes.includes(user.tipo_usuario)) {
-        return res.status(403).json({ message: 'Acesso negado: você não possui acesso a essa página' });
+        return res.status(403).json({ message: 'Acesso negado: você não possui acesso a essa página' })
       }
 
-      req.user = user;
-      next();
+      req.user = user
+      next()
     } catch (err) {
-      return res.status(401).json({ message: 'Token inválido ou expirado' });
+      return res.status(401).json({ message: 'Token inválido ou expirado' })
     }
   };
 }

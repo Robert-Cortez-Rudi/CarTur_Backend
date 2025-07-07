@@ -29,7 +29,8 @@ export async function loginUsuarioController(req, res) {
       user: {
         id: user.id,
         nome: user.nome,
-        email: user.email
+        email: user.email,
+        tipo_usuario: user.tipo_usuario
       }
     })
   } catch (err) {
